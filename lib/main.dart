@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:konversi_suhu_flutter/widget/button.dart';
+import 'package:konversi_suhu_flutter/widget/dropdown.dart';
 import 'package:konversi_suhu_flutter/widget/input.dart';
 import 'package:konversi_suhu_flutter/widget/result.dart';
 
@@ -19,12 +20,28 @@ class _MyAppState extends State<MyApp> {
   double _kelvin = 0;
   double _reamur = 0;
   double _inputUser = 0;
+  String _newValue = "Kelvin";
+  double _result = 0;
+  var listItems = ["Kelvin", "Reamur"];
+  List<String> listHasil = [];
 
   void temperatureConversion() {
     setState(() {
       _inputUser = double.parse(getSuhu.text);
-      _kelvin = _inputUser + 273;
-      _reamur = _inputUser * (4 / 5);
+      if (_newValue == "Kelvin") {
+        _result = 273 + _inputUser;
+        listHasil.add("Kelvin : $_result");
+      }  else {
+        _result = 0.8 * _inputUser;
+        listHasil.add("Reamur : $_result");
+      }
+    });
+  }
+
+  _onDropdownChanged(String? changeValue) {
+    setState(() {
+      _newValue = changeValue!;
+      temperatureConversion();
     });
   }
 
@@ -32,7 +49,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Konverter Suhu - 23 Rofika Nur Aini',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -47,13 +64,30 @@ class _MyAppState extends State<MyApp> {
               InputSuhu(
                 getSuhu: getSuhu,
               ),
-              InformationSuhu(
-                kelvin: _kelvin,
-                reamur: _reamur,
+              dropdown(
+                dropdownOnChanged: _onDropdownChanged, 
+                listItem: listItems, 
+                newValue: _newValue,
               ),
-              ButtonWidget(konversi: temperatureConversion)
+              InformationSuhu(
+                //kelvin: _kelvin,
+                //reamur: _reamur,
+                result: _result,
+              ),
+              ButtonWidget(konversi: temperatureConversion),
+              Expanded(
+                  child: ListView.builder(
+                    itemCount: listHasil.length,
+                    itemBuilder: (context, index) {
+                      return Text(
+                        listHasil[index]
+                        );
+                    },
+                  ),
+                ),
             ],
-          )),
+          )
+      ),
     );
   }
 }

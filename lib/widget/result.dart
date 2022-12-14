@@ -3,60 +3,26 @@ import 'package:flutter/services.dart';
 
 class InformationSuhu extends StatelessWidget {
   const InformationSuhu({
-    Key? key,
-    required this.kelvin,
-    required this.reamur,
-  }) : super(key: key);
-
-  final double kelvin;
-  final double reamur;
+    super.key, 
+    required this.result
+  });
+  
+  final double result;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                padding: const EdgeInsets.all(10),
-                child: Column(
-                  children: [
-                    const Text('Suhu dalam Kelvin'),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      kelvin.toStringAsFixed(1),
-                      style: const TextStyle(
-                        fontSize: 40,
-                      ),
-                    ),
-                  ],
-                ),
+          const Text("Hasil Konversi"),
+          Container(
+            margin: const EdgeInsets.only(top: 20, bottom: 20),
+            child: Expanded(
+              child: Text(
+                result.toStringAsFixed(2),
+                style: const TextStyle(fontSize: 36),
               ),
-              const SizedBox(
-                width: 20,
-              ),
-              Container(
-                padding: const EdgeInsets.all(10),
-                child: Column(
-                  children: [
-                    const Text('Suhu dalam Reamur'),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      reamur.toStringAsFixed(1),
-                      style: TextStyle(
-                        fontSize: 40,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+            ),
           ),
         ],
       ),
