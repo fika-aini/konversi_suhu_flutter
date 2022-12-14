@@ -75,16 +75,27 @@ class _MyAppState extends State<MyApp> {
                 result: _result,
               ),
               ButtonWidget(konversi: temperatureConversion),
+              Container(
+                  margin: const EdgeInsets.only(top: 30),
+                  child: const Text(
+                    "Riwayat Konversi",
+                    style: TextStyle(fontSize: 20),
+                  )),
               Expanded(
+                child: Container(
+                  margin: const EdgeInsets.all(10),
                   child: ListView.builder(
                     itemCount: listHasil.length,
-                    itemBuilder: (context, index) {
+                    itemBuilder: (context, index) 
+                    {
                       return Text(
-                        listHasil[index]
-                        );
+                        listHasil[index],
+                        style: const TextStyle(height: 1.5),
+                      );
                     },
                   ),
                 ),
+              ),
             ],
           )
       ),
