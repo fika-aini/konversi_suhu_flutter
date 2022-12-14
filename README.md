@@ -16,6 +16,6 @@ Hasil Praktikum:
 
 Hasil Praktikum:
 
-<img src="./images/img4.png" height="500" alt="Screenshot"/>
-<img src="./images/img5.png" height="500" alt="Screenshot"/>
-<img src="./images/img6.png" height="500" alt="Screenshot"/>
+<img src="./images/img7.png" height="500" alt="Screenshot"/>
+<img src="./images/img8.png" height="500" alt="Screenshot"/>
+<img src="./images/img9.png" height="500" alt="Screenshot"/>
